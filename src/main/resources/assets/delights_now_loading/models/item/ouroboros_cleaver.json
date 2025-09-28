@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "delights_now_loading:item/ouroboros_cleaver"
+  }
+}

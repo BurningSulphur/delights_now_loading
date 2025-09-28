@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "package": "com.burningsulphur.delights_now_loading.mixins",
+  "refmap": "mixins.delights_now_loading.refmap.json",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "SpawnerCarrierEntityMixin",
+    "SpawnerArmorItemMixin",
+    "ScepterOfSealedChaosItemMixin",
+    "ChaosSpawnerSummonMobGoalMixin",
+    "ChaosSpawnerEntityMixin",
+    "DungeonWallTorchMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
