@@ -13,7 +13,7 @@ import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.yirmiri.dungeonsdelight.DungeonsDelight;
 
-public class VertexCleaverRenderer extends EntityRenderer<VertexCleaver> {
+public class VertexCleaverRenderer extends EntityRenderer<VertexCleaverEntity> {
     private final ItemRenderer itemRenderer;
 
     public VertexCleaverRenderer(EntityRendererProvider.Context ctx) {
@@ -22,7 +22,7 @@ public class VertexCleaverRenderer extends EntityRenderer<VertexCleaver> {
     }
 
     @Override
-    public void render(VertexCleaver cleaverEntity, float yaw, float ticks, PoseStack stack, MultiBufferSource bufferSource, int i) {
+    public void render(VertexCleaverEntity cleaverEntity, float yaw, float ticks, PoseStack stack, MultiBufferSource bufferSource, int i) {
         super.render(cleaverEntity, yaw, ticks, stack, bufferSource, i);
         stack.pushPose();
 
@@ -55,7 +55,7 @@ public class VertexCleaverRenderer extends EntityRenderer<VertexCleaver> {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(VertexCleaver entity) {
+    public ResourceLocation getTextureLocation(VertexCleaverEntity entity) {
         return InventoryMenu.BLOCK_ATLAS;
     }
 }

@@ -12,6 +12,6 @@ public class DNLClientEvents {
 
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(DelightsNowLoading.VERTEX_CLEAVER.get(), VertexCleaverRenderer::new);
+        event.registerEntityRenderer(DelightsNowLoading.VERTEX_CLEAVER_ENTITY.get(), VertexCleaverRenderer::new);
     }
 }

@@ -4,6 +4,7 @@ package com.burningsulphur.delights_now_loading.items;
 
 
 import com.burningsulphur.delights_now_loading.DelightsNowLoading;
+import com.burningsulphur.delights_now_loading.entity.VertexCleaverEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -45,7 +46,7 @@ public class OuroborosCleaverItem extends CleaverItem {
                         p.broadcastBreakEvent(living.getUsedItemHand());
                     });
 
-                    CleaverEntity cleaver = new CleaverEntity((EntityType) DelightsNowLoading.VERTEX_CLEAVER.get(), level, player, stack.copy());
+                    VertexCleaverEntity cleaver = new VertexCleaverEntity((EntityType<? extends VertexCleaverEntity>) DelightsNowLoading.VERTEX_CLEAVER_ENTITY.get(), level, player, stack.copy());
                     cleaver.setItem(stack.copy());
                     this.applyEnchantments(stack, cleaver);
                     cleaver.setBaseDamage(cleaver.getBaseDamage() + (double)this.getAttackDamage());
@@ -54,7 +55,7 @@ public class OuroborosCleaverItem extends CleaverItem {
                         cleaver.pickup = AbstractArrow.Pickup.DISALLOWED;
                     }
 
-                    CleaverEntity cleaver2 = new CleaverEntity((EntityType) DelightsNowLoading.VERTEX_CLEAVER.get(), level, player, stack.copy());
+                    VertexCleaverEntity cleaver2 = new VertexCleaverEntity((EntityType<? extends VertexCleaverEntity>)  DelightsNowLoading.VERTEX_CLEAVER_ENTITY.get(), level, player, stack.copy());
                     cleaver2.setItem(stack.copy());
                     this.applyEnchantments(stack, cleaver2);
                     cleaver2.setBaseDamage(cleaver2.getBaseDamage() + (double)this.getAttackDamage());
@@ -94,7 +95,7 @@ public class OuroborosCleaverItem extends CleaverItem {
         return result;
     }
 
-    void applyEnchantments(ItemStack stack, CleaverEntity cleaver) {
+    void applyEnchantments(ItemStack stack, VertexCleaverEntity cleaver) {
         int sharpness = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, stack);
         if (sharpness > 0) {
             cleaver.setBaseDamage(cleaver.getBaseDamage() + (double)sharpness * 0.5 + 0.5);

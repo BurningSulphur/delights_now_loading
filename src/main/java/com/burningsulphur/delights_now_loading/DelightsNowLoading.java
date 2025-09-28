@@ -1,6 +1,6 @@
 package  com.burningsulphur.delights_now_loading;
 
-import com.burningsulphur.delights_now_loading.entity.VertexCleaver;
+import com.burningsulphur.delights_now_loading.entity.VertexCleaverEntity;
 import com.burningsulphur.delights_now_loading.entity.VertexCleaverRenderer;
 import com.burningsulphur.delights_now_loading.items.OuroborosCleaverItem;
 import com.burningsulphur.delights_now_loading.items.StewSpawner;
@@ -59,9 +59,9 @@ public class DelightsNowLoading
 
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, MOD_ID);
 
-    public static final RegistryObject<EntityType<VertexCleaver>> VERTEX_CLEAVER = ENTITIES.register("vertex_cleaver", () -> (
-            EntityType.Builder.<VertexCleaver>of(VertexCleaver::new, MobCategory.MISC)
-                    .sized(0.75F, 0.5F).clientTrackingRange(4).updateInterval(10).build("vertex_cleaver")));
+    public static final RegistryObject<EntityType<VertexCleaverEntity>> VERTEX_CLEAVER_ENTITY = ENTITIES.register("cleaver", () -> (
+            EntityType.Builder.<VertexCleaverEntity>of(VertexCleaverEntity::new, MobCategory.MISC)
+                    .sized(0.75F, 0.5F).clientTrackingRange(4).updateInterval(10).build("cleaver")));
 
     /*
     // Creates a new Block with the id "examplemod:example_block", combining the namespace and path
@@ -142,8 +142,9 @@ public class DelightsNowLoading
         {
         }
         @SubscribeEvent
-        public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-            event.registerEntityRenderer(VERTEX_CLEAVER.get(), VertexCleaverRenderer::new);
+        public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+            event.registerEntityRenderer(DelightsNowLoading.VERTEX_CLEAVER_ENTITY.get(), VertexCleaverRenderer::new);
         }
+
     }
 }
