@@ -85,7 +85,7 @@ public class OuroborosCleaverItem extends CleaverItem {
 
         if (vertexEffect != null) {
             int duration = 100;
-            int amplifier = 1;
+            int amplifier = 0;
             boolean ambient = false;
             boolean showParticles = true;
 

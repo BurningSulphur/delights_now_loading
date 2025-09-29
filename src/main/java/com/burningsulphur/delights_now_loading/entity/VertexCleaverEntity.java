@@ -2,6 +2,7 @@
 
 package com.burningsulphur.delights_now_loading.entity;
 
+import dev.hexnowloading.dungeonnowloading.entity.projectile.VertexArrowProjectileEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Position;
 import net.minecraft.core.registries.Registries;
@@ -84,6 +85,7 @@ public class VertexCleaverEntity extends AbstractArrow {
     private static final int ADVANCE_POWER_LEVEL_THRESHOLD_TICKS = 8;
     private static final int MAX_POWER_LEVEL = 3;
     private static final int DESPAWN_TIME_TICKS = 300;
+
     //----------------------------
 
     public VertexCleaverEntity(EntityType<? extends VertexCleaverEntity> type, Level level) {
@@ -109,7 +111,9 @@ public class VertexCleaverEntity extends AbstractArrow {
     }
 
     //----------------------------
-    public int getPowerLevel() { return this.entityData.get(POWER_LEVEL); }
+    public int getPowerLevel() {
+        return (Integer)this.entityData.get(POWER_LEVEL);
+    }
 
     public boolean isFullyPowered() { return this.powerLevel == MAX_POWER_LEVEL; }
 
@@ -210,8 +214,9 @@ public class VertexCleaverEntity extends AbstractArrow {
                 this.entityData.set(POWER_LEVEL, this.powerLevel);
                 this.powerIncrementTimer = 0;
             }
-        } else if (!this.level().isClientSide && !this.vertexNode.attemptedConnection() && this.life != DESPAWN_TIME_TICKS) {
-            this.vertexNode.connectToNearbyNodes(this);
+        }
+        if (!this.level().isClientSide && this.life != DESPAWN_TIME_TICKS) { //&& !this.vertexNode.attemptedConnection()
+            this.vertexNode.connectToNearbyNodes(this, true); // does changing this from false to true even do anything???
         }
 
         vertexNode.tick(this);
@@ -473,4 +478,5 @@ public class VertexCleaverEntity extends AbstractArrow {
             this.discard();
         }
     }
+
 }
