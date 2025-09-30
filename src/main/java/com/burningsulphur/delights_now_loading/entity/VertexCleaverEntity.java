@@ -57,6 +57,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
+import java.util.UUID;
+
 
 public class VertexCleaverEntity extends AbstractArrow {
     public static final EntityDataAccessor<Boolean> ID_FOIL = SynchedEntityData.defineId(VertexCleaverEntity.class, EntityDataSerializers.BOOLEAN);
@@ -86,6 +89,9 @@ public class VertexCleaverEntity extends AbstractArrow {
     private static final int MAX_POWER_LEVEL = 3;
     private static final int DESPAWN_TIME_TICKS = 300;
 
+    private static final HashMap<UUID, VertexNode> entityVertexNodeMap = new HashMap();
+
+    private static final int MAX_CONNECTION_COUNT = 5;
     //----------------------------
 
     public VertexCleaverEntity(EntityType<? extends VertexCleaverEntity> type, Level level) {
@@ -173,6 +179,7 @@ public class VertexCleaverEntity extends AbstractArrow {
     @Override
     public void tick() {
         super.tick();
+        vertexNode.tick(this);
 
         if (!this.level().isClientSide) {
             soundTickCounter++;
@@ -214,13 +221,9 @@ public class VertexCleaverEntity extends AbstractArrow {
                 this.entityData.set(POWER_LEVEL, this.powerLevel);
                 this.powerIncrementTimer = 0;
             }
+        }else if (!this.level().isClientSide) { //&& !this.vertexNode.attemptedConnection()  && this.life != DESPAWN_TIME_TICKS
+            this.vertexNode.connectToNearbyNodes(this );
         }
-        if (!this.level().isClientSide && this.life != DESPAWN_TIME_TICKS) { //&& !this.vertexNode.attemptedConnection()
-            this.vertexNode.connectToNearbyNodes(this, true); // does changing this from false to true even do anything???
-        }
-
-        vertexNode.tick(this);
-
 
 
     }
@@ -478,5 +481,7 @@ public class VertexCleaverEntity extends AbstractArrow {
             this.discard();
         }
     }
+
+    //--------------
 
 }
